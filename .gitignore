@@ -1,0 +1,6 @@
+.mypy_cache
+out
+__pycache__
+dist
+xremovebg.egg-info
+build
