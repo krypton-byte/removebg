@@ -7,7 +7,7 @@ setup(
   include_package_data=True,
   long_description=open(path.join(base_dir, "README.md"), encoding="utf-8").read(),
   long_description_content_type='text/markdown',
-  version = '0.1',    
+  version = '0.2',    
   license='MIT',     
   description = 'RemoveBg Scraper without apikey', 
   author = 'Krypton Byte',                  

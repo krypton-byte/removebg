@@ -6,7 +6,8 @@ arg = argparse.ArgumentParser()
 arg.add_argument('--host',default='127.0.0.1')
 arg.add_argument('--port',default='8000')
 arg.add_argument('--force-captcha',type=int, default=5, help='looping for get captcha')
-arg.add_argument('--force-download', default=5, help='looping for get captcha')
+arg.add_argument('--force-download', default=5, help='looping for get download')
+arg.add_argument('--force-upload', default=10, help='looping for upload image')
 arg.add_argument('--server', action='store_true', help='run as server')
 arg.add_argument('--json', action='store_true', help='json result')
 arg.add_argument('--file', help='image path')
@@ -23,11 +24,11 @@ if parse.server:
 elif parse.file:
     rb = RemoveBg()
     if parse.save_session:
-        up=rb.upload(parse.file, trust_token_retrying=parse.force_captcha, download_retrying=parse.force_download)
+        up=rb.upload(parse.file, trust_token_retrying=parse.force_captcha, download_retrying=parse.force_download, retryng_upload=parse.force_download)
         print(json.dumps(up.json, indent=4) if parse.json else up.url)
         rb.save_session(parse.save_session)
     elif parse.load_session:
-        up=rb.load_session(parse.load_session).upload(parse.file, trust_token_retrying=parse.force_captcha, download_retrying=parse.force_download)
+        up=rb.load_session(parse.load_session).upload(parse.file, trust_token_retrying=parse.force_captcha, download_retrying=parse.force_download,retryng_upload=parse.force_download)
         print(json.dumps(up.json, indent=4) if parse.json else up.url)
 elif parse.get_histories and parse.load_session:
     rb = RemoveBg()
